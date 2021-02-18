@@ -3,7 +3,6 @@ package com.ljf;
 import org.junit.jupiter.api.Test;
 
 /**
- * @program: JavaProjectIntergration
  * @author: ljf
  * @create: 2021-02-18 16:03
  * @description: 线程创建
