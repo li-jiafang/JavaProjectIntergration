@@ -1,4 +1,4 @@
-package com.ljf;
+package com.ljf.create;
 
 import org.junit.jupiter.api.Test;
 
