@@ -18,7 +18,8 @@ import java.util.concurrent.Semaphore;
 public class ThreadExecutionOrderDemo {
 
     public int i0 = 0;   // 无法读取
-    private static int i1 = 0; // 不报红
+    private static int i1 = 0; // 不报红 ,为什么全局变量可以在线程中运行, 局部变量无法在线程中运行
+    private static int i4 = 0;
 
     public static void main(String[] args) {
         Thread t = new Thread();
@@ -39,21 +40,22 @@ public class ThreadExecutionOrderDemo {
             public void run() {
                 while (i1 < 10) {
                     try {
-                        i1++;
-                        System.out.println(i2 == 10);
-                        i0 = 0;
-                        i2 = 0;
-                        i3 = 0;
-                        i1 = 0;
+
+                        //System.out.println(i2 == 10);
+                        // i0 = 0;
+                        // i2 = 0;
+                        // i3 = 0;
+                        // i1 = 0;
 
                         // 获取锁，这个时候回去判断信号量里面 permits 许可是否为1 如果为0
                         // 说明另一个线程已经拿到锁，该线程加入队列，休眠
                         // 如果是1 执行当前线程，开发中我们使用redission， 参见胃肠外科项目
                         semaphore.acquire();
-                        System.out.println("A线程");
+                        System.out.println("A线程"+i1);
                         Thread.sleep(1000);
                         // 释放锁, permits 置1 ，释放，唤醒队列中下一个线程
                         semaphore.release();
+                        i1++;
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -66,14 +68,15 @@ public class ThreadExecutionOrderDemo {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (i < 10) {
+                while (i4 < 10) {
                     try {
                         // 获取锁
                         semaphore.acquire();
-                        System.out.println("B线程");
+                        System.out.println("B线程"+i4);
                         Thread.sleep(1000);
                         // 释放锁
                         semaphore.release();
+                        i4++;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
