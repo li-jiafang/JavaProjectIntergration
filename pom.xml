@@ -13,6 +13,7 @@
     <module>50_Spring</module>
     <module>02_Java_Agent</module>
       <module>03_Java_Reflex</module>
+      <module>04_Java_String</module>
   </modules>
 
   <name>JavaProjectIntergration</name>
