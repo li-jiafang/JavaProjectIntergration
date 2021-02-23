@@ -3,9 +3,13 @@ package com.ljf;
 import static org.junit.Assert.assertTrue;
 
 
+import com.ljf.demo1.dao.UserDao;
 import com.ljf.demo1.dao.UserDaoByOracleImpl;
 import com.ljf.demo1.service.UserServiceImpl;
+import com.ljf.demo3.Hello;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Unit test for simple App.
@@ -27,6 +31,21 @@ public class AppTest
         userService.setUserDao(new UserDaoByOracleImpl());
         userService.getUserInfo();
 
+    }
+
+    @Test
+    public void testDemo3(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("test.xml");
+        Hello hello = (Hello) applicationContext.getBean("hello");
+        System.out.println(hello);
+    }
+
+
+    @Test
+    public void testDemo33(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("test.xml");
+        UserServiceImpl userService = (UserServiceImpl) applicationContext.getBean("userServiceImpl");
+        userService.getUserInfo();
     }
 
 

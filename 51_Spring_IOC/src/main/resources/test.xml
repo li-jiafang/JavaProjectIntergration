@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="hello" class="com.ljf.demo3.Hello">
+        <property name="name" value="你好"></property>
+    </bean>
+
+
+    <bean id="mySql" class="com.ljf.demo1.dao.UserDaoByMysqlImpl"></bean>
+    <bean id="oracle" class="com.ljf.demo1.dao.UserDaoByOracleImpl"></bean>
+
+    <bean id="userServiceImpl" class="com.ljf.demo1.service.UserServiceImpl">
+        <property name="userDao" ref="mySql"></property>
+    </bean>
+
+
+</beans>
