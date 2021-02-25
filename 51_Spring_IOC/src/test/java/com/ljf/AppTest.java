@@ -76,21 +76,23 @@ public class AppTest
 
 
     /**
-     * 依赖注入
-     *
-     * 构造器注入 :demo5已经讲过
-     *
-     * set方式注入:重点
+     * bean的作用域
      *
      */
     @Test
-    public void testDemo6(){
+    public void testDemo55(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
+        User user1 = (User) applicationContext.getBean("userNew3");
+        User user2 = (User) applicationContext.getBean("userNew3");
 
-
-
+        System.out.println(user1.hashCode());
+        System.out.println(user2.hashCode());
+        System.out.println(user1 == user2);
 
     }
+
+
+
 
 
 

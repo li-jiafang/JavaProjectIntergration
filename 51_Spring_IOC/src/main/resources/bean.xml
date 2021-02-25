@@ -37,7 +37,7 @@
 
 
     <!--name起别名,无论是通过逗号分割还是空格分割效果是相同的,作用更加高级和强大-->
-    <bean id="user2" class="com.ljf.demo5.User" name="userNew1, userNew2 userNew3">
+    <bean id="user2" class="com.ljf.demo5.User" name="userNew1, userNew2 userNew3" scope="prototype">
         <constructor-arg name="name" value="通过name 值构建对象"></constructor-arg>
     </bean>
 
