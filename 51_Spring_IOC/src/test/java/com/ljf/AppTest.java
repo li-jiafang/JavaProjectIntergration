@@ -9,6 +9,7 @@ import com.ljf.demo1.service.UserServiceImpl;
 import com.ljf.demo3.Hello;
 import com.ljf.demo5.User;
 import org.junit.Test;
+import org.junit.platform.engine.support.descriptor.ClasspathResourceSource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -67,19 +68,29 @@ public class AppTest
 //
 //        System.out.println(user);
 
-
         User user2 = (User) applicationContext.getBean("userNew3");
 
         System.out.println(user2);
 
+    }
 
+
+    /**
+     * 依赖注入
+     *
+     * 构造器注入 :demo5已经讲过
+     *
+     * set方式注入:重点
+     *
+     */
+    @Test
+    public void testDemo6(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
 
 
 
 
     }
-
-
 
 
 
