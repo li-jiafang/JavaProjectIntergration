@@ -7,6 +7,7 @@ import com.ljf.demo1.dao.UserDao;
 import com.ljf.demo1.dao.UserDaoByOracleImpl;
 import com.ljf.demo1.service.UserServiceImpl;
 import com.ljf.demo3.Hello;
+import com.ljf.demo5.User;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -47,6 +48,38 @@ public class AppTest
         UserServiceImpl userService = (UserServiceImpl) applicationContext.getBean("userServiceImpl");
         userService.getUserInfo();
     }
+
+    /**
+     * IOC创建对象的几种方式
+     *
+     * 使用无参构造器创建对象,默认
+     *
+     * 使用有参构造器创建对象,
+     * 1.下标赋值
+     * 2.类型创建(不推荐使用,如何参数包含多个String类型,如何确定是固定类型)
+     * 3.直接通过参数名来创建对象(推荐使用)
+     */
+    @Test
+    public void testDemo5(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
+
+//        User user = (User) applicationContext.getBean("user");
+//
+//        System.out.println(user);
+
+
+        User user2 = (User) applicationContext.getBean("userNew3");
+
+        System.out.println(user2);
+
+
+
+
+
+
+    }
+
+
 
 
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!--默认他通过无参构造器创建对象,set方式完成值得注入-->
+<!--    <bean id="user" class="com.ljf.demo5.User">-->
+<!--        <property name="name" value="张三"/>-->
+<!--    </bean>-->
+
+    <!--使用有参构造器,创建方式第一种:根据index实现对象的创建-->
+<!--    <bean id="user2" class="com.ljf.demo5.User">-->
+<!--        <constructor-arg index="0" value="index 值构建对象"></constructor-arg>-->
+<!--    </bean>-->
+
+    <!--使用有参构造器,创建方式第一种:根据参数类型实现对象的创建 存在弊端,如果存在多个String类型,无法区分,其他类型也一样-->
+<!--    <bean id="user2" class="com.ljf.demo5.User">-->
+<!--        <constructor-arg type="java.lang.String" value="String 值构建对象"></constructor-arg>-->
+<!--    </bean>-->
+
+    <!--通过有参构造器参数名 来实现对象的创建-->
+<!--    <bean id="user2" class="com.ljf.demo5.User">-->
+<!--        <constructor-arg name="name" value="通过name 值构建对象"></constructor-arg>-->
+<!--    </bean>-->
+
+
+
+
+    <!--给对象user2起一个别名,作用小,可放弃,通常情况下,推荐使用bean中的name属性,更高级,更强大-->
+<!--    <alias name="user2" alias="user2New"></alias>-->
+<!--    <bean id="user2" class="com.ljf.demo5.User">-->
+<!--        <constructor-arg name="name" value="通过name 值构建对象"></constructor-arg>-->
+<!--    </bean>-->
+
+
+    <!--name起别名,无论是通过逗号分割还是空格分割效果是相同的,作用更加高级和强大-->
+    <bean id="user2" class="com.ljf.demo5.User" name="userNew1, userNew2 userNew3">
+        <constructor-arg name="name" value="通过name 值构建对象"></constructor-arg>
+    </bean>
+
+
+    <!--beans中的一个最大的属性,import,这个是为了综合所有人配置的beans文件,多用于多人配置上-->
+
+
+
+
+
+
+
+</beans>
