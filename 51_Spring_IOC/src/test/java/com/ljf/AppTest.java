@@ -8,6 +8,7 @@ import com.ljf.demo1.dao.UserDaoByOracleImpl;
 import com.ljf.demo1.service.UserServiceImpl;
 import com.ljf.demo3.Hello;
 import com.ljf.demo5.User;
+import com.ljf.demo6.People;
 import org.junit.Test;
 import org.junit.platform.engine.support.descriptor.ClasspathResourceSource;
 import org.springframework.context.ApplicationContext;
@@ -93,7 +94,18 @@ public class AppTest
 
 
 
-
-
+    /**
+     *
+     * bean的隐式自动装配
+     *
+     */
+    @Test
+    public void testDemo6(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean6.xml");
+        People people = applicationContext.getBean("people", People.class);
+        people.getCat().shout();
+        people.getDog().shout();
+        System.out.println(people);
+    }
 
 }

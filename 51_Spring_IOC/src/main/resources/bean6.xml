@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+
+<!--    <bean id="cat" class="com.ljf.demo6.Cat"/>-->
+<!--    <bean id="dog" class="com.ljf.demo6.Dog"/>-->
+
+<!--    <bean id="people" class="com.ljf.demo6.People">-->
+<!--        <property name="name" value="张三"/>-->
+<!--        <property name="cat" ref="cat"/>-->
+<!--        <property name="dog" ref="dog"/>-->
+<!--    </bean>-->
+
+
+    <!--上面的配置发现,我们创建了各种bean,但是总是重复装配bean,如何能做到让它自动查询并装配呢,通过autowire-->
+
+    <!--实现方式如下:-->
+    <!--byName方式装配-->
+<!--    <bean id="cat" class="com.ljf.demo6.Cat"/>-->
+<!--    <bean id="dog22" class="com.ljf.demo6.Dog"/>-->
+
+
+<!--    &lt;!&ndash;byName装配原则: 自上而下查询类set方法后面值与bean的id相同的&ndash;&gt;-->
+<!--    <bean id="people" class="com.ljf.demo6.People" autowire="byName">-->
+<!--        <property name="name" value="张三"/>-->
+<!--    </bean>-->
+
+    <!--byType方式装配: 实现方式:自上而下,查询和自己对象类型属性相同的bean-->
+    <!--方法弊端, 必须保证这个类型在全局唯一-->
+<!--    <bean id="cat" class="com.ljf.demo6.Cat"/>-->
+<!--    <bean id="dog22" class="com.ljf.demo6.Dog"/> -->
+<!--    <bean id="dog23" class="com.ljf.demo6.Dog"/>-->
+<!--    &lt;!&ndash;dog存在多个类型,bean装配就报错&ndash;&gt;-->
+
+<!--    &lt;!&ndash;byName装配原则: 自上而下查询类set方法后面值与bean的id相同的&ndash;&gt;-->
+<!--    <bean id="people" class="com.ljf.demo6.People" autowire="byType">-->
+<!--        <property name="name" value="张三"/>-->
+<!--    </bean>-->
+
+
+
+
+</beans>
