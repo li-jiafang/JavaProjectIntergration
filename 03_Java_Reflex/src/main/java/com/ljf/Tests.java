@@ -27,8 +27,8 @@ public class Tests {
             Class c4 = Class.forName("com.ljf.User");
             System.out.println(c4.hashCode());
 
-            User user = new User();
-            System.out.println(user.getClass().hashCode());
+            //User user = new User();
+            //System.out.println(user.getClass().hashCode());
 
             Class c5 = User.class;
 

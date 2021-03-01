@@ -11,6 +11,16 @@ public class User extends UserFather{
 
     public String language;
 
+    protected User() {
+        System.out.println("调用了无参构造器");
+    }
+
+    public User(String name, int age, String language) {
+        this.name = name;
+        this.age = age;
+        this.language = language;
+    }
+
     private void test(){
 
     }
@@ -37,5 +47,14 @@ public class User extends UserFather{
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", language='" + language + '\'' +
+                '}';
     }
 }
