@@ -8,4 +8,9 @@ package com.ljf;
 
 public class UserFather extends UserGrandfather{
     private String name;
+
+
+    public void testFather(){
+
+    }
 }
