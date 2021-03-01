@@ -10,6 +10,7 @@ import java.lang.annotation.Annotation;
  * @description:
  *
  * 反射获取注解
+ * 将读取类的注解,转化为指定注解,再获取指定注解的值,并执行一系列操作
  *
  **/
 
