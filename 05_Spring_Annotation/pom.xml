@@ -5,21 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ljf</groupId>
-  <artifactId>JavaProjectIntergration</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>05_Spring_Annotation</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>01_Java_Thread</module>
-    <module>50_Spring</module>
-    <module>02_Java_Agent</module>
-      <module>03_Java_Reflex</module>
-      <module>04_Java_String</module>
-    <module>51_Spring_IOC</module>
-      <module>52_Spring_JavaConfiguration</module>
-      <module>05_Spring_Annotation</module>
-  </modules>
 
-  <name>JavaProjectIntergration</name>
+  <name>05_Spring_Annotation</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -33,27 +22,8 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.11</version>
       <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.16</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>5.2.13.RELEASE</version>
     </dependency>
   </dependencies>
 
