@@ -43,6 +43,29 @@ public class StringDemo {
     @Test
     public void regularMatch(){
 
+    }
+
+
+    /**
+     * 字符串比较
+     */
+    @Test
+    public void compareStr(){
+
+        System.out.println("abc" == "abc");
+
+        System.out.println("abc" == "abc".substring(0,3));
+
+
+        System.out.println(new String("c") == new String("c"));
+        System.out.println(new String("c") .equals(new String("c")) );
+
+
+
+        // 等号 和 equals之间的区别, 他们比较的究竟是什么
+
+        //
+
 
     }
 
