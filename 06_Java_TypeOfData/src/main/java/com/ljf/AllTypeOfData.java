@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
  *
  * Java提供了8中基本类型
  *
- * 4种整数类型
- * 2种浮点数类型
- * char类型
- * boolean类型
+ * 4种整数类型 byte 1字节 short 2字节 int 4字节 long 8字节
+ * 2种浮点数类型 float 4字节 double 8字节
+ * char类型 char
+ * boolean类型 boolean
  *
  *
  */
@@ -56,6 +56,8 @@ public class AllTypeOfData
         // char 字符
 
         System.out.println('\u03C0');
+
+        System.out.println(00000);
 
 
         System.out.println("hello\r文件");  // 回车
