@@ -77,9 +77,9 @@ public class AppTest
 
 
     /**
-     * bean的作用域
-     *
-     */
+     * bean的作用域 默认是singleton(单例模式)
+     * 但是也可以修改为
+     **/
     @Test
     public void testDemo55(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
