@@ -1,5 +1,9 @@
 package com.ljf.dao;
 
+import com.ljf.bean.Emp;
+
+import java.util.List;
+
 /**
  * @author: ljf
  * @create: 2021-03-16 16:28
@@ -7,5 +11,5 @@ package com.ljf.dao;
  **/
 public interface EmpDao {
 
-    void getList();
+    List<Emp> getList();
 }
