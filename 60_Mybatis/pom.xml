@@ -5,25 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ljf</groupId>
-    <artifactId>JavaProjectIntergration</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>60_Mybatis</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>01_Java_Thread</module>
-        <module>50_Spring</module>
-        <module>02_Java_Agent</module>
-        <module>03_Java_Reflex</module>
-        <module>04_Java_String</module>
-        <module>51_Spring_IOC</module>
-        <module>52_Spring_JavaConfiguration</module>
-        <module>05_Spring_Annotation</module>
-        <module>53_Spring_AOP</module>
-        <module>06_Java_TypeOfData</module>
-        <module>07_Java_JSON</module>
-        <module>60_Mybatis</module>
-    </modules>
 
-    <name>JavaProjectIntergration</name>
+    <name>60_Mybatis</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -32,53 +17,20 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+    <parent>
+        <groupId>com.ljf</groupId>
+        <artifactId>JavaProjectIntergration</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>compile</scope>
+            <version>4.11</version>
+            <scope>test</scope>
         </dependency>
-
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.2.13.RELEASE</version>
-        </dependency>
-
-
-        <!--连接数据库需要jar包-->
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.6</version>
-        </dependency>
-
     </dependencies>
-
-
 
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
