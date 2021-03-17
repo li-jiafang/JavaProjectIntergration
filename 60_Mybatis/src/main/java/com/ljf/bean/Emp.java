@@ -11,7 +11,7 @@ import lombok.Data;
 public class Emp {
     private int id;
     private String name;
-    private byte age;
+    private int age;
     private int deptId;
     private int empNo;
 }

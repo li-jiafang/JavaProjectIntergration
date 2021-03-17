@@ -6,4 +6,26 @@
     <select id="getList" resultType="com.ljf.bean.Emp">
         select * from t_emp
     </select>
+
+
+    <select id="getListById" parameterType="int" resultType="com.ljf.bean.Emp">
+        select * from t_emp where id = #{id}
+    </select>
+
+    <insert id="insertList" parameterType="com.ljf.bean.Emp">
+        insert into t_emp(id,name,age,deptId,empNo) values (#{id},#{name},#{age},#{deptId},#{empNo})
+    </insert>
+
+    <update id="updateList" parameterType="com.ljf.bean.Emp">
+        update t_emp set empNo=#{empNo},name=#{name},age=#{age} where id = #{id}
+    </update>
+
+    <delete id="deleteList" parameterType="com.ljf.bean.Emp">
+        delete from t_emp where name = #{name}
+    </delete>
+
+    <insert id="insertListByMap" parameterType="map">
+        insert into t_emp(id,name,empno) values (#{id},#{name},#{empnoss})
+    </insert>
+
 </mapper>
