@@ -21,6 +21,7 @@
         <module>06_Java_TypeOfData</module>
         <module>07_Java_JSON</module>
         <module>60_Mybatis</module>
+        <module>20_Java8</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
