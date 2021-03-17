@@ -3,7 +3,9 @@ package com.ljf.stream;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -44,6 +46,32 @@ public class StreamTest {
     }
 
 
+    /**
+     * 将list集合中的map
+     */
+    @Test
+    public void test2(){
+        // 将empNo为null和不为空的集合分组
+        List<User> userList = processList1();
+        List<User> userList1 = userList.stream().filter(user -> "20016".equals(user.getEmpNo())).collect(Collectors.toList());
+        List<User> userList2 = userList.stream().filter(user -> null == user.getEmpNo()).collect(Collectors.toList());
+        System.out.println(userList1);
+        System.out.println(userList2);
+    }
+
+    public List<Map<String,User>> processList2(){
+        User user1 = new User(1,"hello1","20016");
+        User user2 = new User(2,"hello2","20016");
+        User user3 = new User(3,"hello3",null);
+
+        List<Map<String,User>> userList = new ArrayList<>();
+        Map<String,User> map = new HashMap<>();
+        map.put("hello1",user1);
+        map.put("hello2",user2);
+        map.put("hello3",user3);
+        userList.add(map);
+        return userList;
+    }
 
 
 
