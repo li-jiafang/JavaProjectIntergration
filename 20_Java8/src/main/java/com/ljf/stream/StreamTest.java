@@ -61,33 +61,35 @@ public class StreamTest {
     public void test2(){
         List<Map<String, Object>> list1 = processListMap();
         List<String> list2 = processList2();
-        List<Map<String, Object>> list3 = new ArrayList<>();
+        List<List<Object>> allList = new ArrayList<>();
 
-        //list2.stream().forEach(list1.stream().filter());
-        list2.stream().forEach(i -> {
-            list1.stream().map(e -> e.get(i)!= null).collect(Collectors.toList());
-        });
-
-
-        List<Object> collect = list2.stream().map(v -> {
+        for (Map<String, Object> map : list1) {
             List<Object> list = new ArrayList<>();
+            for (String s : list2) {
+                list.add(map.get(s));
+            }
+            allList.add(list);
+        }
 
-            list1.forEach(e -> {
-                list.add(e.get(v));
-            });
-
-            return list.get(list.size() - 1);
-        }).collect(Collectors.toList());
-
-
-        //list1.stream().filter(list2)
-
-
-        System.out.println(collect);
-//        System.out.println(list2);
+        System.out.println(allList);
 
     }
 
+    @Test
+    void test22() {
+        List<Map<String, Object>> mapList1 = processListMap();
+        List<String> list2 = processList2();
+        List<List<Object>> collect = list2.stream()
+                .map(var -> mapList1.stream().filter(item -> item.containsKey(var))
+                        .collect(Collectors.toList()).stream()
+                        .map(
+                                mic -> mic.get(var)
+                        ).collect(Collectors.toList()))
+                .collect(Collectors.toList());
+
+        System.out.println(collect);
+
+    }
 
     public List<Map<String,Object>> processListMap(){
         List<Map<String,Object>> list1 = new ArrayList<>();
