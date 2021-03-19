@@ -9,10 +9,6 @@ package com.ljf.learning1;
  * 学习:
  * 多线程同步下载网络图片
  *
- *
- *
- *
- *
  **/
 public class TestThread1 {
 
