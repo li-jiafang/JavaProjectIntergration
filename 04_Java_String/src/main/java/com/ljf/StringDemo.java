@@ -68,7 +68,13 @@ public class StringDemo {
         //
     }
 
+    @Test
+    void strReplace() {
 
+        String s = "1.主诉: 检查发现PSA升高1月余";
+        String replace = s.replace(": ", "").replace("1.主诉: ", "");
+        System.out.println(replace);
+    }
 
     /**
      * 正则匹配指定的字符串
