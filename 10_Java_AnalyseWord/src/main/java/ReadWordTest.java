@@ -1,5 +1,5 @@
-import org.apache.poi.hwpf.HWPFDocument;
 
+import org.apache.poi.hwpf.HWPFDocument;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,8 +14,7 @@ import java.util.regex.Pattern;
 /**
  * @author: ljf
  * @create: 2021-03-24 09:51
- * @description:
- * 多个患者一个list
+ * @description: 多个患者一个list
  * 患者项目每个指标是一个list
  * List
  * List<>
@@ -30,12 +29,9 @@ public class ReadWordTest {
     public static void main(String[] args) {
         String documentText = "";
         String path = "C:\\Users\\86137\\Desktop\\前列腺癌根治资料2021-02-20.doc";
-        try(InputStream inputStream = new FileInputStream(path)){
+        try (InputStream inputStream = new FileInputStream(path)) {
             HWPFDocument doc = new HWPFDocument(inputStream);
             documentText = doc.getDocumentText();
-            // 对文本做处理
-            //handleWordText(documentText);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -47,15 +43,77 @@ public class ReadWordTest {
         List<List<String>> lists = readWordTest.getEveryPageText(documentText);
 
         for (List<String> list : lists) {
-
+            readWordTest.analyzeWordEveryPage(list);
         }
-
 
 
     }
 
     /**
+     * 分析每页word并提取结果
+     *
+     * @param list
+     */
+    private void analyzeWordEveryPage(List<String> list) {
+        List<WordMapping> wordMappings = new ArrayList<>();
+        Map<String, String> map = new HashMap<>();
+
+
+        // 手术指征 集合
+        List<String> tempList1 = new ArrayList<>();
+        // 术前检查 集合
+        List<String> tempList2 = new ArrayList<>();
+        String tempName = "";
+
+        for (String s : list) {
+            if (s.contains("4.手术指征")) {
+                tempName = "手术指征";
+            } else if (s.contains("8.术前检查")) {
+                tempName = "术前检查";
+            } else if (s.contains("5.既往史") || s.contains("9.一般情况")) {
+                tempName = "";
+            }
+            if ("".equals(tempName)) {
+                Map<String, String> tempMap = interceptStr(s);
+                map.putAll(tempMap);
+            } else if ("手术指征".equals(tempName)) {
+                tempList1.add(s);
+            } else if ("术前检查".equals(tempName)) {
+                tempList2.add(s);
+            }
+        }
+
+        // 手术指征 处理
+        for (String s : tempList1) {
+            if (s.contains("手术指征")){
+
+            }else{
+                treatmentOfSurgicalIndications(s);
+            }
+
+        }
+
+
+        System.out.println(tempList1);
+        System.out.println(tempList2);
+
+
+    }
+
+    // 手术指征 处理
+    private void treatmentOfSurgicalIndications(String s) {
+        Map<String, Subset> map = new HashMap<>();
+        String[] s1 = s.split(" ");
+
+        Subset subset = new Subset();
+
+
+    }
+
+
+    /**
      * 获取每页word文本
+     *
      * @param documentText
      * @return
      */
@@ -66,10 +124,10 @@ public class ReadWordTest {
         String[] strArr = documentText.split("\r");
         for (int i = 0; i < strArr.length; i++) {
             String s = strArr[i];
-            if (!"".equals(s)){
+            if (!"".equals(s)) {
                 list.add(s);
             }
-            if (s.contains("术者") && s.contains("I助")){
+            if (s.contains("术者") && s.contains("I助")) {
                 listAll.add(list);
                 list = new ArrayList<>();
             }
@@ -78,73 +136,53 @@ public class ReadWordTest {
     }
 
 
-    /**
-     * 先以行数据截取
-     * @param documentText
-     */
-    private static void handleWordText(String documentText) {
-        interceptStrByRegular("手术日期","手术日期",documentText);
-        
-//        boolean flag = true;
-//        for (int i = 0; i < strArr.length; i++) {
-//            //if (strArr)
-//
-//            if (flag){
-//                interceptStr(strArr[i]);
-//            }
-//            System.out.println(strArr[i]);
-//            // 截取字符通过正则
-//
-//        }
-        
-        
+    private Map<String, String> interceptStr(String s) {
 
-
-    }
-
-    private static void interceptStr(String s) {
-        Map<String,String> map = new HashMap<>();
-        if (s.contains("手术日期") && s.contains("患者姓名") && s.contains("年龄") && s.contains("岁")){
-            map.put("手术日期",interceptStrByRegular("手术日期","患者姓名",s));
-            map.put("患者姓名",interceptStrByRegular("患者姓名","年龄",s));
-            map.put("年龄",interceptStrByRegular("年龄","岁",s));
-        }else if (s.contains("主诉")){
+        Map<String, String> map = new HashMap<>();
+        if (s.contains("手术日期") && s.contains("患者姓名") && s.contains("年龄") && s.contains("岁")) {
+            String s1 = interceptStrByRegular("手术日期", "患者姓名", s);
+            String s2 = interceptStrByRegular("患者姓名", "年龄", s);
+            String s3 = interceptStrByRegular("年龄", "岁", s);
+            map.put("手术日期", strReplace(s1));
+            map.put("患者姓名", strReplace(s2));
+            map.put("年龄", strReplace(s3));
+        } else if (s.contains("主诉")) {
             String replace = s.replace("主诉", "").replace("1.", "");
-            map.put("主诉",strReplace(replace));
-        }else if (s.contains("诊断")){
+            map.put("主诉", strReplace(replace));
+        } else if (s.contains("诊断")) {
             String replace = s.replace("诊断", "").replace("2.", "");
-            map.put("诊断",strReplace(replace));
-        }else if (s.contains("手术")){
+            map.put("诊断", strReplace(replace));
+        } else if (s.contains("手术")) {
             String replace = s.replace("手术", "").replace("3.", "");
-            map.put("手术",strReplace(replace));
-        }else if (s.contains("既往史")){
+            map.put("手术", strReplace(replace));
+        } else if (s.contains("既往史")) {
             String replace = s.replace("既往史", "").replace("5.", "");
-            map.put("既往史",strReplace(replace));
+            map.put("既往史", strReplace(replace));
         }
-
-        System.out.println(map);
+        return map;
 
     }
 
 
     /**
      * 正则匹配两个字符串中间的内容
-     *
+     * <p>
      * 匹配两个字符串A与B中间的字符串包含A与B:  表达式: A.*?B
-     *
+     * <p>
      * 匹配两个字符串A与B中间的字符串包含A但是不包含B： 表达式: A.*?(?=B)
-     *
+     * <p>
      * 匹配两个字符串A与B中间的字符串且不包含A与B：表达式: (?<=A).*?(?=B)
+     *
      * @param begin
      * @param end
      * @return
      */
-    private static String interceptStrByRegular(String begin,String end,String str){
-        Pattern pattern = Pattern.compile("(?<="+begin+").*?(?="+end+")");
+    private static String interceptStrByRegular(String begin, String end, String str) {
+        Pattern pattern = Pattern.compile("(?<=" + begin + ").*?(?=" + end + ")");
         Matcher matcher = pattern.matcher(str);
-        if (matcher.find()){
+        if (matcher.find()) {
             return matcher.group();
-        }else{
+        } else {
             return "";
         }
     }
@@ -152,18 +190,17 @@ public class ReadWordTest {
 
     /**
      * 将字符串中多余的字符替换为空
+     *
      * @param str
      * @return
      */
-    private static String strReplace(String str){
-        if (str != null){
-            str =  str.replace("，","").replace("：","").replace(":","")
-                    .replace(",","").replace(" ","");
+    private static String strReplace(String str) {
+        if (str != null) {
+            str = str.replace("，", "").replace("：", "").replace(":", "")
+                    .replace(",", "").replace(" ", "");
         }
         return str;
     }
-
-
 
 
 }

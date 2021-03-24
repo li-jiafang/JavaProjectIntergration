@@ -11,5 +11,6 @@ public class WordMapping {
 
     private String key;
     private String value;
+    private Subset subset;
 
 }
