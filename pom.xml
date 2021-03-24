@@ -24,6 +24,8 @@
         <module>20_Java8</module>
         <module>61_Mybatis_Property</module>
         <module>08_Java_EasyExcel</module>
+        <module>09_Java_Collection</module>
+        <module>10_Java_AnalyseWord</module>
     </modules>
 
     <name>JavaProjectIntergration</name>

@@ -3,6 +3,8 @@ package com.ljf;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author: ljf
@@ -63,11 +65,35 @@ public class StringDemo {
 
 
         // 等号 和 equals之间的区别, 他们比较的究竟是什么
-
         //
+    }
 
+
+
+    /**
+     * 正则匹配指定的字符串
+     *
+     * 匹配两个字符串A与B中间的字符串包含A与B:  表达式: A.*?B
+     *
+     * 匹配两个字符串A与B中间的字符串包含A但是不包含B： 表达式: A.*?(?=B)
+     *
+     * 匹配两个字符串A与B中间的字符串且不包含A与B：表达式: (?<=A).*?(?=B)
+     */
+    @Test
+    public void matchStrByRegular(){
+
+        String s = "我的大哥企业122ahdfahh阿发";
+
+
+        Pattern pattern = Pattern.compile(".*?的");
+        Matcher matcher = pattern.matcher(s);
+        while (matcher.find()){
+            String group = matcher.group();
+            System.out.println(group);
+        }
 
     }
+
 
 
 
