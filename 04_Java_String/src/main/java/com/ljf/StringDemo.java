@@ -100,8 +100,13 @@ public class StringDemo {
 
     }
 
+    @Test
+    void name() {
 
+        String s = "([1|9]0)|([2-4]1)|44|47|([6|7|8]1)";
 
+        String s2 = "([1|9]0)|(2-4]1)|44|47|([6|7|8]1)";
 
-
+        System.out.println("31".matches(s2));
+    }
 }

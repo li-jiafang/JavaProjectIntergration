@@ -16,4 +16,36 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <!-- log for java - Begin -->
+        <!-- log4j-api 和 log4j-core 共同组成 log4j2 版本 -->
+        <!-- log4j-api 是提供接口,开发过程中的日志相关应只用此 api 提供的接口 -->
+        <!-- log4j-core 是实现包,开发过程中不需要调用此接口 -->
+        <!-- 如果需要切换日志实现又不希望去修改代码,可以引入 slf4j 的桥接包,具体方法可查询相关资料 -->
+        <!-- runtime 是提供给测试和运行时使用的 jar 包,日常开发时无法调用此接口,因此日志只能使用 log4j-api 提供的接口 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.8.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>2.8.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+        <!-- log for java - End -->
+    </dependencies>
+
 </project>

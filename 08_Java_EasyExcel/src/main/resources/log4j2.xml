@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="OFF" monitorInterval="300">
+
+    <properties>
+<!--        <property name="log_home">/logs/tabletoexcel</property>-->
+<!--        <property name="log_home">/data/taizhou_old/gaoxin/logs</property>-->
+        <property name="log_home">/home/wonders/tabletoexcel/logs</property>
+    </properties>
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%highlight{[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %-5level %logger{36} - %msg%n}{FATAL=magenta, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=white}"/>
+        </Console>
+
+        <RollingFile name="RollingFileAll" fileName="${log_home}/all.log"
+                     filePattern="logs/$${date:yy-MM-dd}/all-%d{yy-MM-dd}-%i.all.log.gz">
+            <Filters>
+                <ThresholdFilter level="all" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+            </Filters>
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+<!--        debug级别，打印service中的程序输出-->
+        <RollingFile name="RollingFileService" fileName="${log_home}/service.log"
+                     filePattern="logs/$${date:yy-MM-dd}/service-%d{yy-MM-dd}-%i.service.log.gz">
+            <Filters>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+<!--        info级别，打印需求的信息-->
+<!--        这个file的command应该改成demand，因为我一开始把需求的单词记混了-->
+        <RollingFile name="RollingFileDemand" fileName="${log_home}/demand.log"
+                     filePattern="logs/$${date:yy-MM-dd}/demand-%d{yy-MM-dd}-%i.demand.log.gz">
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileError" fileName="${log_home}/error.log"
+                     filePattern="logs/$${date:yy-MM-dd}/error-%d{yy-MM-dd}-%i.error.log.gz">
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+<!--        暂时不输出框架的信息-->
+        <logger name="org.springframework" level="ERROR">
+<!--            <appender-ref ref="Console"/>-->
+<!--            <appender-ref ref="RollingFileError"/>-->
+        </logger>
+        <logger name="com.mchange" level="ERROR">
+<!--            <appender-ref ref="Console"/>-->
+<!--            <appender-ref ref="RollingFileError"/>-->
+        </logger>
+        <logger name="org.hibernate" level="ERROR">
+<!--            <appender-ref ref="Console"/>-->
+<!--            <appender-ref ref="RollingFileError"/>-->
+        </logger>
+        <logger name="org.apache" level="ERROR">
+<!--            <appender-ref ref="Console"/>-->
+<!--            <appender-ref ref="RollingFileError"/>-->
+        </logger>
+
+        <!--        打印功能输出信息-->
+        <logger name="com.wondersgroup.bigdata.project.service" level="debug">
+            <appender-ref ref="RollingFileService"/>
+            <appender-ref ref="RollingFileDemand"/>
+        </logger>
+
+        <logger name="com.wondersgroup.bigdata.application" level="debug">
+            <appender-ref ref="RollingFileError"/>
+        </logger>
+
+        <root level="debug">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileAll"/>
+            <appender-ref ref="RollingFileError"/>
+        </root>
+    </loggers>
+</Configuration>
