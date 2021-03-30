@@ -14,4 +14,6 @@ import com.dev.project.domain.QsTaskQueuePO;
  */
 public interface QsTaskQueueService extends IService<QsTaskQueuePO> {
 
+    void insertB();
+
 }

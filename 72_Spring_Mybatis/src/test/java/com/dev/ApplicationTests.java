@@ -44,9 +44,7 @@ class ApplicationTests {
 
     @Test
     void testTransaction() {
-        testService.insertAAndB();
-
-
+        testService.execute();
     }
 }
 

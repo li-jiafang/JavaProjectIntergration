@@ -7,5 +7,8 @@ package com.dev.project.service;
  **/
 public interface TestService {
 
+
     void insertAAndB();
+
+    void execute();
 }
