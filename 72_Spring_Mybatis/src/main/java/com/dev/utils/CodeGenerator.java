@@ -25,94 +25,89 @@ import java.util.Scanner;
 // 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
 public class CodeGenerator {
 
-    /**
-     * <p>
-     * 读取控制台内容
-     * </p>
-     */
-    public static String scanner(String tip) {
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
-        if (scanner.hasNext()) {
-            String ipt = scanner.next();
-            if (StringUtils.isNotBlank(ipt)) {
-                return ipt;
-            }
-        }
-        throw new MybatisPlusException("请输入正确的" + tip + "！");
-    }
+
+    private static String projectPath = "D:\\Java\\Ljf\\JavaProjectIntergration\\72_Spring_Mybatis";
+    private static String author = "ljf";
+
+    private static String moduleName = "project";
+    private static String parentPackage = "com.dev";
+
+    private static String url = "jdbc:mysql://10.1.65.12:3306/question_cherry?useUnicode=true&useSSL=false&characterEncoding=utf8";
+    private static String driverName = "com.mysql.cj.jdbc.Driver";
+    private static String userName = "root";
+    private static String passWord = "root";
+
 
     public static void main(String[] args) {
-        // 代码生成器
-        AutoGenerator mpg = new AutoGenerator();
 
-        // 全局配置
-
-
-        // 数据源配置
-
-
-        // 数据库表配置
-
-
-        // 包配置
-
-
-        //
-
-
+        // 代码生成工具类
+        AutoGenerator generator = new AutoGenerator();
 
 
         // 全局配置
-        GlobalConfig gc = new GlobalConfig();
-        // String projectPath = System.getProperty("user.dir");
-        String projectPath = "D:\\Java\\Ljf\\JavaProjectIntergration\\71_Spring_Mybatis";
-        gc.setOutputDir(projectPath + "\\src\\main\\java");
-        gc.setAuthor("ljf");
-        gc.setOpen(false);
-        // gc.setEnableCache(true); // 二级缓存暂时关闭,项目中没有配置Ehcache,开启需要配置
+        GlobalConfig gc = buildGlobalConfig();
+        generator.setGlobalConfig(gc);
 
-        // 设置名字
-        gc.setControllerName("%sController");
-        gc.setServiceName("%sService");
-        gc.setServiceImplName("%sServiceImpl");
-        gc.setMapperName("%sDao");
-        gc.setEntityName("%sPO");
-        gc.setXmlName("%sDao");
-        gc.setIdType(IdType.AUTO);
-        // 设置 resultMap
-        gc.setBaseResultMap(true);
-        gc.setBaseColumnList(true);
-
-
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
-        mpg.setGlobalConfig(gc);
 
         // 数据源配置
-        DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://10.1.65.12:3306/question_cherry?useUnicode=true&useSSL=false&characterEncoding=utf8");
-        // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("root");
-        mpg.setDataSource(dsc);
-
-
+        DataSourceConfig dsc = buildDataSourceConfig();
+        generator.setDataSource(dsc);
 
 
         // 包配置
-        PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.dev");
-        pc.setController("controller");
-        pc.setEntity("domain");
-        pc.setService("service");
-        pc.setMapper("dao");
-        mpg.setPackageInfo(pc);
+        PackageConfig pc = buildPackageConfig();
+        generator.setPackageInfo(pc);
 
-        // 自定义配置
+
+        // 自对应配置
+        InjectionConfig cfg = buildInjectionConfig();
+        generator.setCfg(cfg);
+
+        // 配置模板
+        TemplateConfig templateConfig = buildTemplateConfig();
+        generator.setTemplate(templateConfig);
+
+        // 策略配置
+        StrategyConfig strategy = buildStrategyConfig(pc);
+        generator.setStrategy(strategy);
+
+        generator.setTemplateEngine(new FreemarkerTemplateEngine());
+        generator.execute();
+
+    }
+
+    private static TemplateConfig buildTemplateConfig() {
+        // 配置模板
+        TemplateConfig templateConfig = new TemplateConfig();
+
+        // 配置自定义输出模板
+        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
+        // templateConfig.setEntity("templates/entity2.java");
+        // templateConfig.setService();
+        // templateConfig.setController();
+
+        templateConfig.setXml(null);
+        return templateConfig;
+    }
+
+    private static StrategyConfig buildStrategyConfig(PackageConfig pc) {
+        StrategyConfig strategy = new StrategyConfig();
+        strategy.setNaming(NamingStrategy.underline_to_camel);
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+        //strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
+        strategy.setEntityLombokModel(true);
+        strategy.setRestControllerStyle(true);
+        // 公共父类
+        //strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
+        // 写于父类中的公共字段
+        // strategy.setSuperEntityColumns("id"); // 会导致id无法被生成
+        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
+        strategy.setControllerMappingHyphenStyle(true);
+        strategy.setTablePrefix(pc.getModuleName() + "_");
+        return strategy;
+    }
+
+    private static InjectionConfig buildInjectionConfig() {
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
@@ -153,37 +148,74 @@ public class CodeGenerator {
         });
         */
         cfg.setFileOutConfigList(focList);
-        mpg.setCfg(cfg);
+        return cfg;
+    }
 
-        // 配置模板
-        TemplateConfig templateConfig = new TemplateConfig();
+    private static PackageConfig buildPackageConfig() {
+        PackageConfig pc = new PackageConfig();
+        pc.setModuleName(moduleName);
+        pc.setParent(parentPackage);
+        pc.setController("controller");
+        pc.setEntity("domain");
+        pc.setService("service");
+        pc.setMapper("dao");
+        return pc;
+    }
 
-        // 配置自定义输出模板
-        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
-        // templateConfig.setEntity("templates/entity2.java");
-        // templateConfig.setService();
-        // templateConfig.setController();
+    private static DataSourceConfig buildDataSourceConfig() {
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setUrl(url);
+        // dsc.setSchemaName("public");
+        dsc.setDriverName(driverName);
+        dsc.setUsername(userName);
+        dsc.setPassword(passWord);
+        return dsc;
+    }
 
-        templateConfig.setXml(null);
-        mpg.setTemplate(templateConfig);
+    private static GlobalConfig buildGlobalConfig() {
+        GlobalConfig gc = new GlobalConfig();
+        // String projectPath = System.getProperty("user.dir");
+        gc.setOutputDir(projectPath + "\\src\\main\\java");
+        gc.setAuthor(author);
+        gc.setOpen(false);
+        // gc.setEnableCache(true); // 二级缓存暂时关闭,项目中没有配置Ehcache,开启需要配置
 
-        // 策略配置
-        StrategyConfig strategy = new StrategyConfig();
-        strategy.setNaming(NamingStrategy.underline_to_camel);
-        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        //strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
-        strategy.setEntityLombokModel(true);
-        strategy.setRestControllerStyle(true);
-        // 公共父类
-        //strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
-        // 写于父类中的公共字段
-        // strategy.setSuperEntityColumns("id"); // 会导致id无法被生成
-        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
-        strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
-        mpg.setStrategy(strategy);
-        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-        mpg.execute();
+        // 设置名字
+        gc.setControllerName("%sController");
+        gc.setServiceName("%sService");
+        gc.setServiceImplName("%sServiceImpl");
+        gc.setMapperName("%sDao");
+        gc.setEntityName("%sPO");
+        gc.setXmlName("%sDao");
+        gc.setIdType(IdType.AUTO);
+
+        // 设置 resultMap
+        gc.setBaseResultMap(true);
+        gc.setBaseColumnList(true);
+
+        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+
+        return gc;
+    }
+
+
+    /**
+     * <p>
+     * 读取控制台内容
+     * </p>
+     */
+    public static String scanner(String tip) {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder help = new StringBuilder();
+        help.append("请输入" + tip + "：");
+        System.out.println(help.toString());
+        if (scanner.hasNext()) {
+            String ipt = scanner.next();
+            if (StringUtils.isNotBlank(ipt)) {
+                return ipt;
+            }
+        }
+        throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
 
 }
