@@ -16,6 +16,6 @@ public interface QsAnswerService extends IService<QsAnswerPO> {
 
 
 
-    void insertAAndB();
+    void insertQsAnswer();
 
 }

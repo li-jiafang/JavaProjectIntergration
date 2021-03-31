@@ -4,6 +4,8 @@ package com.dev.project.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dev.project.domain.QsTaskQueuePO;
 
+import java.sql.SQLException;
+
 /**
  * <p>
  *  服务类
@@ -14,6 +16,6 @@ import com.dev.project.domain.QsTaskQueuePO;
  */
 public interface QsTaskQueueService extends IService<QsTaskQueuePO> {
 
-    void insertB();
+    void insertQsTaskQueue() throws SQLException;
 
 }

@@ -1,10 +1,12 @@
 package com.dev.project.service.impl;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 import com.dev.project.dao.QsAnswerDao;
 import com.dev.project.dao.QsTaskQueueDao;
 import com.dev.project.domain.QsAnswerPO;
 import com.dev.project.domain.QsTaskQueuePO;
+import com.dev.project.service.QsAnswerService;
 import com.dev.project.service.QsTaskQueueService;
 import com.dev.project.service.TestService;
 import org.springframework.stereotype.Service;
@@ -22,48 +24,25 @@ import javax.annotation.Resource;
 @Service
 public class TestServiceImpl implements TestService {
     @Resource
-    private QsTaskQueueDao qsTaskQueueDao;
+    private QsAnswerService qsAnswerService;
 
     @Resource
     private QsTaskQueueService qsTaskQueueService;
 
-    @Resource
-    private TestService testService;
-
-
     @Override
-    public void insertAAndB() {
-        QsTaskQueuePO qsTaskQueuePO = new QsTaskQueuePO();
-
-        qsTaskQueuePO.setTaskId(0L);
-        qsTaskQueuePO.setPatientId(0L);
-        qsTaskQueuePO.setQuestionId(0L);
-        qsTaskQueuePO.setQuestionVersionId(0L);
-        qsTaskQueuePO.setAgentId(0L);
-        qsTaskQueuePO.setAutoSend(0);
-        qsTaskQueuePO.setIsFinished(0);
-        qsTaskQueuePO.setCreateDate(LocalDateTime.now());
-        qsTaskQueuePO.setUpdateDate(LocalDateTime.now());
-        qsTaskQueueDao.insert(qsTaskQueuePO);
-        if (true){
-            throw new RuntimeException();
+    public void execute1() throws SQLException {
+        qsAnswerService.insertQsAnswer();
+        execute11();
+        if (true) {
+            throw new RuntimeException("执行错误");
         }
+    }
 
+    private void execute11() throws SQLException {
+        qsTaskQueueService.insertQsTaskQueue();
+
+        qsTaskQueueService.insertQsTaskQueue();
     }
 
 
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    @Override
-    public void execute() {
-        testService.insertAAndB();
-
-        execute2();
-    }
-
-
-    public void execute2() {
-        qsTaskQueueService.insertB();
-
-    }
 }

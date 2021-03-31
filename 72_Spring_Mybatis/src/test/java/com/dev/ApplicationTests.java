@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -44,7 +45,11 @@ class ApplicationTests {
 
     @Test
     void testTransaction() {
-        testService.execute();
+        try {
+            testService.execute1();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
 

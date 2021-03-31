@@ -1,4 +1,5 @@
 package com.dev.project.service.impl;
+import java.time.LocalDateTime;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -22,44 +23,22 @@ import javax.annotation.Resource;
 @Service
 public class QsAnswerServiceImpl extends ServiceImpl<QsAnswerDao, QsAnswerPO> implements QsAnswerService {
 
-    @Resource
-    private QsTaskQueueDao qsTaskQueueDao;
+
 
     @Resource
     private  QsAnswerDao qsAnswerDao;
 
+
     @Override
-    public void insertAAndB() {
-        QsTaskQueuePO qsTaskQueuePO = new QsTaskQueuePO();
-        qsTaskQueuePO.setTaskId(0L);
-        qsTaskQueuePO.setPatientId(0L);
-        qsTaskQueuePO.setQuestionId(0L);
-        qsTaskQueuePO.setQuestionVersionId(0L);
-        qsTaskQueuePO.setAgentId(0L);
-        qsTaskQueuePO.setAutoSend(0);
-        qsTaskQueuePO.setIsFinished(0);
-        qsTaskQueueDao.insert(qsTaskQueuePO);
-
-        insertB();
-    }
-
-    private void insertB() {
+    public void insertQsAnswer() {
         QsAnswerPO qsAnswerPO = new QsAnswerPO();
         qsAnswerPO.setTaskQueueId(0L);
         qsAnswerPO.setContent("1");
         qsAnswerPO.setUniqueKey("1");
+        qsAnswerPO.setDeleteFlag(0);
+        qsAnswerPO.setCreateDate(LocalDateTime.now());
+        qsAnswerPO.setUpdateDate(LocalDateTime.now());
         qsAnswerDao.insert(qsAnswerPO);
-        if (true){
-            throw new RuntimeException();
-        }
-
-        qsAnswerPO = new QsAnswerPO();
-        qsAnswerPO.setTaskQueueId(0L);
-        qsAnswerPO.setContent("2");
-        qsAnswerPO.setUniqueKey("2");
-        qsAnswerDao.insert(qsAnswerPO);
-
-
     }
 
 }

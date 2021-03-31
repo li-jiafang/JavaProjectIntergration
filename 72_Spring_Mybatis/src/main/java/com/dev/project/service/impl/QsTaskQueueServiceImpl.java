@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.SQLClientInfoException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 /**
@@ -25,28 +27,24 @@ import java.time.LocalDateTime;
 @Service
 public class QsTaskQueueServiceImpl extends ServiceImpl<QsTaskQueueDao, QsTaskQueuePO> implements QsTaskQueueService {
 
-
     @Resource
-    private QsAnswerDao qsAnswerDao;
+    private QsTaskQueueDao qsTaskQueueDao;
+
+
 
     @Override
-    public void insertB() {
-        QsAnswerPO qsAnswerPO = new QsAnswerPO();
-        qsAnswerPO.setTaskQueueId(0L);
-        qsAnswerPO.setContent("1");
-        qsAnswerPO.setUniqueKey("1");
-        qsAnswerPO.setCreateDate(LocalDateTime.now());
-        qsAnswerPO.setUpdateDate(LocalDateTime.now());
-        qsAnswerDao.insert(qsAnswerPO);
-
-
-        qsAnswerPO = new QsAnswerPO();
-        qsAnswerPO.setTaskQueueId(0L);
-        qsAnswerPO.setContent("2");
-        qsAnswerPO.setUniqueKey("2");
-        qsAnswerPO.setCreateDate(LocalDateTime.now());
-        qsAnswerPO.setUpdateDate(LocalDateTime.now());
-        qsAnswerDao.insert(qsAnswerPO);
+    public void insertQsTaskQueue() throws SQLException {
+        QsTaskQueuePO qsTaskQueuePO = new QsTaskQueuePO();
+        qsTaskQueuePO.setTaskId(0L);
+        qsTaskQueuePO.setPatientId(0L);
+        qsTaskQueuePO.setQuestionId(0L);
+        qsTaskQueuePO.setQuestionVersionId(0L);
+        qsTaskQueuePO.setAgentId(0L);
+        qsTaskQueuePO.setAutoSend(0);
+        qsTaskQueuePO.setIsFinished(0);
+        qsTaskQueuePO.setCreateDate(LocalDateTime.now());
+        qsTaskQueuePO.setUpdateDate(LocalDateTime.now());
+        qsTaskQueueDao.insert(qsTaskQueuePO);
 
     }
 }
