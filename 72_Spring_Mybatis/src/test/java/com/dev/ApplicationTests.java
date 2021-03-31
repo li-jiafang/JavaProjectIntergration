@@ -43,6 +43,9 @@ class ApplicationTests {
     }
 
 
+    /**
+     * 不同service层调用方法,出现异常回滚情况
+     */
     @Test
     void testTransaction() {
         try {
@@ -51,5 +54,20 @@ class ApplicationTests {
             throwables.printStackTrace();
         }
     }
+
+
+    /**
+     * 在同一个service层,出现异常回滚情况
+     */
+    @Test
+    void testTransaction1(){
+        try {
+            testService.execute2();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
 }
 

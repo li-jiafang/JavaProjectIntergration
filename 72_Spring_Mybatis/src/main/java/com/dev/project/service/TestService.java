@@ -9,4 +9,6 @@ import java.sql.SQLException;
  **/
 public interface TestService {
     void execute1() throws SQLException;
+
+    void execute2() throws SQLException;
 }
