@@ -2,7 +2,10 @@ package com.dev.project.service.impl;
 import java.time.LocalDateTime;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dev.project.controller.vo.QsAnswerVO;
 import com.dev.project.dao.QsAnswerDao;
 import com.dev.project.dao.QsTaskQueueDao;
 import com.dev.project.domain.QsAnswerPO;
@@ -28,6 +31,13 @@ public class QsAnswerServiceImpl extends ServiceImpl<QsAnswerDao, QsAnswerPO> im
     @Resource
     private  QsAnswerDao qsAnswerDao;
 
+
+    @Override
+    public Page<QsAnswerVO> findByPage() {
+        Page<QsAnswerVO> page = new Page<>(2,3);
+
+        return qsAnswerDao.getPage(page);
+    }
 
     @Override
     public void insertQsAnswer() {

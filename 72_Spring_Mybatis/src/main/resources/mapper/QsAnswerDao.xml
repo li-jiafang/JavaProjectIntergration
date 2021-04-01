@@ -18,4 +18,7 @@
         id, task_queue_id, content, unique_key, delete_flag, create_date, update_date
     </sql>
 
+    <select id="getPage" resultType="com.dev.project.controller.vo.QsAnswerVO">
+        select a.question_id,b.id,b.content,b.unique_key from qs_task_queue a left join qs_answer b on a.id = b.task_queue_id
+    </select>
 </mapper>

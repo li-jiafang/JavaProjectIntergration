@@ -4,8 +4,12 @@ package com.dev;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.dev.project.controller.vo.QsAnswerVO;
 import com.dev.project.dao.QsTaskQueueDao;
+import com.dev.project.domain.QsAnswerPO;
 import com.dev.project.domain.QsTaskQueuePO;
+import com.dev.project.service.QsAnswerService;
 import com.dev.project.service.TestService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +25,8 @@ import java.util.List;
 @SpringBootTest
 class ApplicationTests {
 
-
+    @Resource
+    private QsAnswerService qsAnswerService;
 
     @Resource
     private QsTaskQueueDao qsTaskQueueDao;
@@ -68,6 +73,13 @@ class ApplicationTests {
         }
     }
 
+    @Test
+    void testPage() {
 
+        IPage<QsAnswerVO> byPage = qsAnswerService.findByPage();
+
+        System.out.println(byPage.getRecords());
+
+    }
 }
 
