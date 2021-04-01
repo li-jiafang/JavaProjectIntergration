@@ -109,4 +109,13 @@ public class StringDemo {
 
         System.out.println("31".matches(s2));
     }
+
+
+    @Test
+    void lowerCase() {
+
+        String s = "DIC_CITY";
+
+        System.out.println(s.replace("_","").toLowerCase(Locale.ROOT));
+    }
 }
