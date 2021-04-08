@@ -104,6 +104,18 @@ public class StringDemo {
 
     }
 
+    /**
+     * 测试正则是否正确
+     */
+    @Test
+    void matchStrByRegular2() {
+        // 处理分号的正则表达式
+        String s = "01;02";
+        String regular = "((0[1-9])|(1[0-9])|99)(;(0[1-9])|(1[0-9])|99)*";
+
+        System.out.println(s.matches(regular));
+
+    }
 
     /**
      * 字符串拼接耗时情况
