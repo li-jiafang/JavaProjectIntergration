@@ -26,6 +26,7 @@
         <module>08_Java_EasyExcel</module>
         <module>09_Java_Collection</module>
         <module>10_Java_AnalyseWord</module>
+        <module>11_Java_Generic</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
