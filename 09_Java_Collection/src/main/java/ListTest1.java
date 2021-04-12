@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,4 +29,26 @@ public class ListTest1 {
         System.out.println(listMap);
 
     }
+
+    @Test
+    public void test1(){
+        List<Person> listOld = new ArrayList<>();
+        List<Person> listNew = new ArrayList<>();
+
+        Person person = new Person();
+        person.setId(0L);
+        person.setName("hh");
+        listOld.add(person);
+
+        person = new Person();
+        person.setName("ll");
+        listNew.add(person);
+
+        System.out.println();
+
+
+
+
+    }
+
 }
