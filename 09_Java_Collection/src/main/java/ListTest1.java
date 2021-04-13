@@ -57,6 +57,9 @@ public class ListTest1 {
     }
 
 
+    /**
+     * 将list集合中的部分元素提取转换为map集合
+     */
     @Test
     public void test3(){
         List<Person> listNew = new ArrayList<>();
