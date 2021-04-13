@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 /**
  * @author: ljf
@@ -52,6 +53,29 @@ public class ListTest1 {
     @Test
     void test2() {
         CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+
+    }
+
+
+    @Test
+    public void test3(){
+        List<Person> listNew = new ArrayList<>();
+
+        Person person = new Person();
+        person.setId(0L);
+        person.setName("hh");
+        listNew.add(person);
+
+        person = new Person();
+        person.setId(1L);
+        person.setName("ll");
+        listNew.add(person);
+
+        System.out.println(listNew);
+
+        Map<Long, String> collect = listNew.stream().collect(Collectors.toMap(Person::getId, Person::getName));
+        System.out.println(collect);
+
 
     }
 }
