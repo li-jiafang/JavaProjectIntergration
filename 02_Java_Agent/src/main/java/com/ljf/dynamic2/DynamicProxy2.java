@@ -3,6 +3,7 @@ package com.ljf.dynamic2;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Date;
 
 /**
  * @author: ljf
@@ -13,29 +14,35 @@ import java.lang.reflect.Proxy;
  **/
 public class DynamicProxy2  implements InvocationHandler {
 
-    // obj对象为委托类对象(需要被代理对象)
-    private Object obj;
+    // 目标代理类对象
+    private Object target;
 
-    public Object getObj() {
-        return obj;
+    public DynamicProxy2() {
     }
 
-    public void setObj(Object obj) {
-        this.obj = obj;
+//    public DynamicProxy2(Object target) {
+//        this.target = target;
+//    }
+
+    public void setTarget(Object target) {
+        this.target = target;
     }
 
-    // 生成代理类
+
+    /**
+     * 生成代理类实例
+     */
     public Object getProxy(){
-
-        return Proxy.newProxyInstance(DynamicProxy2.class.getClassLoader(),obj.getClass().getInterfaces(),this);
+        return Proxy.newProxyInstance(this.getClass().getClassLoader(), target.getClass().getInterfaces(),this);
     }
 
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("代理执行之前");
-        Object invoke = method.invoke(proxy, args);
-        System.out.println("代理方法执行之后");
+
+        System.out.println("方法处理之前"+method.getName()+System.currentTimeMillis());
+        Object invoke = method.invoke(target, args);
+        System.out.println("方法处理之后"+method.getName()+System.currentTimeMillis());
         return invoke;
     }
 }

@@ -18,14 +18,6 @@ public class InvocationHandlerImpl implements InvocationHandler {
         this.target = target;
     }
 
-//    public TestInterface testInterface;
-//
-//    public void add(){
-//        System.out.println("kaishi");
-//        this.testInterface.add();
-//        System.out.println("jieshu");
-//    }
-
     public static void main(String[] args) {
         TestInterface testInterface1 = new TestInterfaceImpl();
         testInterface1 = (TestInterface)generateProxy(testInterface1);
@@ -35,8 +27,9 @@ public class InvocationHandlerImpl implements InvocationHandler {
 
     private static Object generateProxy(TestInterface testInterface1) {
         InvocationHandlerImpl invocationHandler1 = new InvocationHandlerImpl(testInterface1);
-        return Proxy.newProxyInstance(testInterface1.getClass().getClassLoader()
+        Object o = Proxy.newProxyInstance(InvocationHandlerImpl.class.getClass().getClassLoader()
                 , testInterface1.getClass().getInterfaces(), invocationHandler1);
+        return o;
     }
 
     @Override

@@ -20,13 +20,13 @@ public class DynamicTest2 {
 
     public static void main(String[] args) {
 
-        Vendor2 vendor2 = new Vendor2();
+        Sell2 vendor2 = new Vendor2();
 
         DynamicProxy2 dynamicProxy = new DynamicProxy2();
 
-        dynamicProxy.setObj(vendor2);
+        dynamicProxy.setTarget(vendor2);
 
-        Sell2 proxy = (Sell2)dynamicProxy.getProxy();
+        Sell2 proxy = (Sell2) dynamicProxy.getProxy();
 
         proxy.sell();
 
