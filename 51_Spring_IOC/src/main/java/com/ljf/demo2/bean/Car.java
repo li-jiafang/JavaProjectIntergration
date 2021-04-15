@@ -4,12 +4,19 @@ import lombok.Data;
 
 /**
  * @author: ljf
- * @create: 2021-02-23 16:20
+ * @create: 2021-04-15 12:11
  * @description:
  **/
 @Data
 public class Car {
+
     private String name;
-    private String color;
-    private String price;
+
+    private String length;
+
+    private String width;
+
+    private String height;
+
+    private Wheel wheel;
 }
