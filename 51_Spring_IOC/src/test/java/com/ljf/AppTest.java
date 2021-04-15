@@ -3,14 +3,12 @@ package com.ljf;
 import static org.junit.Assert.assertTrue;
 
 
-import com.ljf.demo1.dao.UserDao;
 import com.ljf.demo1.dao.UserDaoByOracleImpl;
 import com.ljf.demo1.service.UserServiceImpl;
 import com.ljf.demo3.Hello;
 import com.ljf.demo5.User;
 import com.ljf.demo6.People;
 import org.junit.Test;
-import org.junit.platform.engine.support.descriptor.ClasspathResourceSource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -38,7 +36,7 @@ public class AppTest
 
     @Test
     public void testDemo3(){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("test.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("demo3.xml");
         Hello hello = (Hello) applicationContext.getBean("hello");
         System.out.println(hello);
     }
@@ -46,7 +44,7 @@ public class AppTest
 
     @Test
     public void testDemo33(){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("test.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("demo3.xml");
         UserServiceImpl userService = (UserServiceImpl) applicationContext.getBean("userServiceImpl");
         userService.getUserInfo();
     }
