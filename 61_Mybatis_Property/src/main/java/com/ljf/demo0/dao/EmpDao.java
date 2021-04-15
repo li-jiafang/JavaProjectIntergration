@@ -1,4 +1,4 @@
-package com.ljf.dao;
+package com.ljf.demo0.dao;
 
 import com.ljf.bean.Emp;
 

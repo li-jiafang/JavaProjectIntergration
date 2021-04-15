@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ljf.dao.EmpDao">
+<mapper namespace="com.ljf.demo0.dao.EmpDao">
     <select id="getList" resultType="com.ljf.bean.Emp">
         select * from t_emp
     </select>
