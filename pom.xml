@@ -28,6 +28,7 @@
         <module>10_Java_AnalyseWord</module>
         <module>11_Java_Generic</module>
         <module>12_Java_DesignPatterns</module>
+        <module>13_Java_Network</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
