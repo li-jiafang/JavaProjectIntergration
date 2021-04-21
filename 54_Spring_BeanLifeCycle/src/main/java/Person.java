@@ -1,12 +1,14 @@
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 /**
  * @author: ljf
  * @create: 2021-04-19 14:17
  * @description:
  **/
-public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean {
+public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean, ApplicationContextAware {
 
     private String name;
 
@@ -17,6 +19,8 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     private BeanFactory beanFactory;
 
     private String beanName;
+
+    private ApplicationContext applicationContext;
 
 
     public Person() {
@@ -90,5 +94,11 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     // 通过<bean>的destroy-method属性指定的初始化方法
     public void myDestory() {
         System.out.println("【destroy-method】调用<bean>的destroy-method属性指定的初始化方法");
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println("[setApplicationContext] 调用");
+        this.applicationContext = applicationContext;
     }
 }
