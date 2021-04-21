@@ -30,6 +30,7 @@
         <module>12_Java_DesignPatterns</module>
         <module>13_Java_Network</module>
         <module>54_Spring_BeanLifeCycle</module>
+        <module>55_Spring_CircularDependency</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
