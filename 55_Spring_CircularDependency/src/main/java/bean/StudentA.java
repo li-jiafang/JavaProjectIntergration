@@ -13,6 +13,10 @@ public class StudentA {
         this.studentB = studentB;
     }
 
+    public StudentB getStudentB() {
+        return studentB;
+    }
+
     public StudentA() {
     }
 

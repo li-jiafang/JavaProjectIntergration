@@ -19,17 +19,17 @@ public class JavaBeanConfig {
 
     @Bean
     public StudentA getStudentA(){
-        return new StudentA();
+        return new StudentA(new StudentB());
     }
 
     @Bean
     public StudentB getStudentB(){
-        return new StudentB();
+        return new StudentB(new StudentC());
     }
 
 
     @Bean
     public StudentC getStudentC(){
-        return new StudentC();
+        return new StudentC(new StudentA());
     }
 }

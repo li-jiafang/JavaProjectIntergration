@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Component
 public class User {
 
-    @Value("张三")
+    //@Value("张三")
     private String name;
 
 
