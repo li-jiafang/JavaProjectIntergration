@@ -6,4 +6,6 @@ package com.ljf.service;
  * @description:
  **/
 public interface TestService {
+
+    void testService(String name);
 }
