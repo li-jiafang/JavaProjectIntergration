@@ -35,6 +35,8 @@ public class StringDemo {
 
         System.out.println(a); // hello
 
+        System.out.println("文件".contains(a));
+
     }
 
 
