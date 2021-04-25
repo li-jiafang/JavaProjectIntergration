@@ -24,8 +24,13 @@ public class TestController {
     @GetMapping("/test1")
     @ResponseBody
     public String test(String name){
-        testService.testService(name);
-        System.out.println(name);
+        try{
+            testService.testService("hello",name);
+            System.out.println(name);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "test";
     }
 }

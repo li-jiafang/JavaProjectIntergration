@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestServiceImpl implements TestService{
     @Override
-    public void testService(String name) {
-        System.out.println(name);
+    public void testService(String str,String name) {
+        String s = null;
+        s.toString();
+        System.out.println(str + name);
+
     }
 }

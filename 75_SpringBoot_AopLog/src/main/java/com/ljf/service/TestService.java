@@ -7,5 +7,5 @@ package com.ljf.service;
  **/
 public interface TestService {
 
-    void testService(String name);
+    void testService(String str,String name);
 }
