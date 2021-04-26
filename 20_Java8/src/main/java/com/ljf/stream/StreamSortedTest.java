@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 public class StreamSortedTest {
 
 
+    /**
+     * list集合按照指定字段排序
+     */
     @Test
     public void test1(){
         User user1 = new User(1,"hello1","20016");
