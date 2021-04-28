@@ -1,5 +1,6 @@
 package com.ljf;
 
+import cn.hutool.extra.pinyin.PinyinUtil;
 import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,11 @@ public class StringDemo {
 
 
     public static void main(String[] args) {
+
+        // hutool 获取拼音首字母
+        //
+        String result = PinyinUtil.getFirstLetter("李佳方","");
+        System.out.println(result);
 
     }
 
