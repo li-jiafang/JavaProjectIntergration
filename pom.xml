@@ -31,6 +31,7 @@
         <module>13_Java_Network</module>
         <module>54_Spring_BeanLifeCycle</module>
         <module>55_Spring_CircularDependency</module>
+        <module>00_Java_Test</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
