@@ -1,18 +1,16 @@
-package com.ljf.begin;
+package com.ljf.begin00;
 
-import com.ljf.stream.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author: ljf
  * @create: 2021-03-17 10:44
  * @description:
  **/
-public class OriginalClass {
+public class OriginalClassTest {
 
     /**
      * 传统做法

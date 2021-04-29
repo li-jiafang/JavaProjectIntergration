@@ -1,4 +1,4 @@
-package com.ljf.begin;
+package com.ljf.begin00;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

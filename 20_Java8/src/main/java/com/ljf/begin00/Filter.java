@@ -1,6 +1,4 @@
-package com.ljf.begin;
-
-import java.util.List;
+package com.ljf.begin00;
 
 /**
  * @author: ljf
