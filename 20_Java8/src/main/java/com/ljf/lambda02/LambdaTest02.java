@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -115,4 +116,38 @@ public class LambdaTest02 {
             consumer.accept(t);
         }
     }
+
+    /**
+     * @FunctionalInterface
+     * public interface Function<T, R> {
+     *  函数式接口方法: R apply(T t); 根据T类型返回R类型
+     *  实现方法 public <T,R> List<R> map(List<T> list, Function<T,R> function) {
+     *
+     */
+
+    @Test
+    public void testFunction() {
+        List<Apple> list = Constant.processList();
+        System.out.println(list);
+        List<Double> doubles = map(list, Apple::getPrice);
+        System.out.println(doubles);
+
+        List<Integer> map1 = map(list, apple -> apple.getName().length());
+        System.out.println(map1);
+
+        List<String> map2 = map(list, apple -> apple.getName().replace("富士山","旧金山"));
+        System.out.println(map2);
+
+    }
+
+    public <T,R> List<R> map(List<T> list, Function<T,R> function) {
+        List<R> result = new ArrayList<>();
+        for (T t : list) {
+            R apply = function.apply(t);
+            result.add(apply);
+        }
+        return result;
+    }
+
+
 }
