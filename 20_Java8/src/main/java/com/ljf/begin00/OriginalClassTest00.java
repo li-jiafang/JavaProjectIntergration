@@ -9,8 +9,10 @@ import java.util.List;
  * @author: ljf
  * @create: 2021-03-17 10:44
  * @description:
+ *
+ * 传统筛选获取条件的方式
  **/
-public class OriginalClassTest {
+public class OriginalClassTest00 {
 
     /**
      * 传统做法
@@ -115,8 +117,6 @@ public class OriginalClassTest {
         }
         return result;
     }
-
-
 
 
 
