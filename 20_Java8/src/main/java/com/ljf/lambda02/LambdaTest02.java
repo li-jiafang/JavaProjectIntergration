@@ -300,14 +300,7 @@ public class LambdaTest02 {
         System.out.println(function4.apply(2)); // 5
         System.out.println(function4.apply(4)); // 9
 
-
         // 等同于先获取compose(function2)的结果给function1作为参数 等同于  2*2+1
-
-
-
-
-
-
 
     }
 
