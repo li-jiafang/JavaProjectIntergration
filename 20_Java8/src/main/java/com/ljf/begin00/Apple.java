@@ -19,4 +19,8 @@ public class Apple {
     private String color;
 
     private Double price;
+
+    public Apple() {
+
+    }
 }

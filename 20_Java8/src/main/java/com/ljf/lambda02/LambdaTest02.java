@@ -2,6 +2,7 @@ package com.ljf.lambda02;
 
 import cn.hutool.core.io.LineHandler;
 import cn.hutool.core.lang.Filter;
+import cn.hutool.core.lang.copier.Copier;
 import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.func.VoidFunc0;
 import cn.hutool.cron.task.Task;
@@ -11,11 +12,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * @author: ljf
@@ -205,11 +208,11 @@ public class LambdaTest02 {
      * () -> Thread.currentThread().dumpStack() Thread.currentThread()::dumpStack
      * (str, i) -> str.substring(i) String::substring
      * (String s) -> System.out.println(s) System.out::println
-     *
-     *
+     * <p>
+     * equivalentReference 等效引用
      */
     @Test
-    public void equivalentReference(){
+    public void equivalentReference() {
 
         Func1<Apple, Double> getPrice = Apple::getPrice;
 
@@ -217,10 +220,96 @@ public class LambdaTest02 {
         // 等效引用
         Function<String, Integer> function = Integer::parseInt;
 
+
+        List<String> str = Arrays.asList("a", "b", "A", "B");
+        str.sort((s1, s2) -> s1.compareToIgnoreCase(s2));
+        // 等效引用
+        str.sort(String::compareToIgnoreCase);
+
     }
 
 
+    /**
+     * 函数式接口Supplier 定义一个对象
+     * 执行方法 get获取指定对象
+     * <p>
+     * 构造函数引用
+     */
+    @Test
+    public void constructorReference() {
+        Supplier<Apple> supplier = () -> new Apple();
+        Apple apple = supplier.get();
+        System.out.println(apple);
 
+        // 构造函数等效引用
+        Supplier<Apple> supplier2 = Apple::new;
+    }
+
+
+    /**
+     * 复合 Lambda 表达式的有用方法
+     * 比较器复合  逆序  + 链式操作
+     */
+    @Test
+    public void complexLambda() {
+        List<Apple> list = Constant.processList();
+
+        System.out.println(list);   //
+
+        // .reversed()逆序
+        // comparing(Apple::getPrice)按价格排序
+        // .thenComparing(Apple::getName)按名字排序
+        // 整体逻辑是:先按照价格排序,再按照名字排序,最后都逆序
+        list.sort(Comparator.comparing(Apple::getPrice).thenComparing(Apple::getName).reversed());
+        System.out.println(list);
+    }
+
+
+    /**
+     * 复合 Lambda 表达式的有用方法
+     * 谓词复合  谓词接口包括三个方法： negate、 and和or，让你可以重用已有的Predicate来创建更复杂的谓词。
+     * notRedApple.negate().and().or();
+     */
+    @Test
+    public void complexLambda2() {
+        List<Apple> list = Constant.processList();
+        Predicate<Apple> notRedApple = apple -> "红色".equals(apple.getColor());
+        List<Apple> filter = filter(list, notRedApple.negate().and(apple -> "黄色".equals(apple.getColor())));
+        System.out.println(filter);
+
+    }
+
+
+    /**
+     * 复合 Lambda 表达式的有用方法
+     * 函数复合   Function接口为此配了andThen和compose两个默认方法
+     * function   andThen  compose
+     */
+    @Test
+    public void complexLambda3() {
+        Function<Integer, Integer> function1 = x -> x + 1;
+        Function<Integer, Integer> function2 = x -> x * 2;
+        Function<Integer, Integer> function3 = function1.andThen(function2);
+
+        System.out.println(function3.apply(2)); // 6
+        System.out.println(function3.apply(4)); // 10
+        // 操作等同于 先给值加1再给结果乘与2  （2+1）*2 = 6
+
+
+        Function<Integer, Integer> function4 = function1.compose(function2);
+        System.out.println(function4.apply(2)); // 5
+        System.out.println(function4.apply(4)); // 9
+
+
+        // 等同于先获取compose(function2)的结果给function1作为参数 等同于  2*2+1
+
+
+
+
+
+
+
+    }
 
 
 }
