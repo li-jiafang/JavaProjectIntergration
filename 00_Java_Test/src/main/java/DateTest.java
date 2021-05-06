@@ -28,4 +28,14 @@ public class DateTest {
         System.out.println(null1);
         System.out.println(map);
     }
+
+
+    @Test
+    void test2() {
+        Date date = new Date();
+        DateTime dateTime = DateUtil.beginOfDay(date);
+        System.out.println(dateTime);
+
+
+    }
 }
