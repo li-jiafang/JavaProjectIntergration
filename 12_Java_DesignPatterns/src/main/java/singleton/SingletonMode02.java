@@ -23,4 +23,14 @@ public class SingletonMode02 {
         return singletonMode02;
     }
 
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> System.out.println(getSingletonMode01())).start();
+        }
+
+        System.out.println(getSingletonMode01());
+        System.out.println(getSingletonMode01());
+    }
+
 }
