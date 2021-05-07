@@ -32,6 +32,7 @@
         <module>54_Spring_BeanLifeCycle</module>
         <module>55_Spring_CircularDependency</module>
         <module>00_Java_Test</module>
+        <module>14_Java_Hash</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
