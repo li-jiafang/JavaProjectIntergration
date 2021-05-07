@@ -20,7 +20,7 @@ public class SingletonMode01 {
     }
 
     public static SingletonMode01 getSingletonMode01(){
-        if (singletonMode01 == null){
+        if (singletonMode01 != null){
             return singletonMode01;
         }
         singletonMode01 = new SingletonMode01();

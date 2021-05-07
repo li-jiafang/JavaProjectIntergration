@@ -16,7 +16,7 @@ public class SingletonMode02 {
     }
 
     public static synchronized SingletonMode02 getSingletonMode01(){
-        if (singletonMode02 == null){
+        if (singletonMode02 != null){
             return singletonMode02;
         }
         singletonMode02 = new SingletonMode02();
