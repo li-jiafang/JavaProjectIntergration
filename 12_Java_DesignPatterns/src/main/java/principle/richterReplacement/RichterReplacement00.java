@@ -13,6 +13,8 @@ package principle.richterReplacement;
  * 正确的做法是：取消几维鸟原来的继承关系，定义鸟和几维鸟的更一般的父类，
  * 如动物类，它们都有奔跑的能力。鸵鸟鸟的飞行速度虽然为 0，但奔跑速度不为 0，可以计算出其奔跑 300 千米所要花费的时间
  *
+ * 通过增加更高维度的类,避免鸵鸟和燕子继承鸟类的高度耦合 http://c.biancheng.net/view/1324.html
+ *
  **/
 public class RichterReplacement00 {
 
