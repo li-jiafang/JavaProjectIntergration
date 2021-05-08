@@ -1,4 +1,4 @@
-package principle;
+package principle.singleResponsibility;
 
 /**
  * @author: ljf
