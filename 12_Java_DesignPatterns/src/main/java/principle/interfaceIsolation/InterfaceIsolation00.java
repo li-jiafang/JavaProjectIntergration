@@ -12,7 +12,9 @@ package principle.interfaceIsolation;
  * C依赖D实现1 2 4这三个接口
  * 传统做法如下
  *
- * 弊端:因为A C都只依赖BD实现部分接口,但是BD实现全部接口,
+ * 弊端:因为A C都只依赖BD实现部分接口,但是BD实现全部接口
+ *
+ * 需要改进
  **/
 public class InterfaceIsolation00 {
     public static void main(String[] args) {
