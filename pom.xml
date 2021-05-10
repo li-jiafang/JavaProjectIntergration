@@ -33,6 +33,8 @@
         <module>55_Spring_CircularDependency</module>
         <module>00_Java_Test</module>
         <module>14_Java_Hash</module>
+        <module>51_Spring_IOC01</module>
+        <module>30_Think_In_Java</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
