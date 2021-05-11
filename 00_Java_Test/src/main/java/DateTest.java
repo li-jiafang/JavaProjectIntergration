@@ -38,4 +38,16 @@ public class DateTest {
 
 
     }
+
+    @Test
+    void test3() {
+        List<String> list= new ArrayList<>();
+        list.add("hello");
+        list.add("hello");
+        list.add("hello");
+        list.add("hello");
+
+        System.out.println();
+
+    }
 }
