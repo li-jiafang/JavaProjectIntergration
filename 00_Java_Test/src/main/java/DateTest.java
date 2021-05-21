@@ -50,4 +50,13 @@ public class DateTest {
         System.out.println();
 
     }
+
+    @Test
+    void test4() {
+
+        String s = null;
+        DateTime dateTime = DateUtil.parse(s);
+        System.out.println(dateTime);
+
+    }
 }
