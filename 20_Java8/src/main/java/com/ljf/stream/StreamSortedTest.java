@@ -21,6 +21,7 @@ public class StreamSortedTest {
     @Test
     public void test1(){
         User user1 = new User(1,"hello1","20016");
+        User user4 = new User(1,"hello1","20016");
         User user2 = new User(2,"hello2","20016");
         User user3 = new User(3,"hello3",null);
 
@@ -28,9 +29,26 @@ public class StreamSortedTest {
         userList.add(user1);
         userList.add(user2);
         userList.add(user3);
+        userList.add(user4);
+        List<Integer> collect = userList.stream().map(User::getId).distinct().collect(Collectors.toList());
+        System.out.println(collect);
 
-        System.out.println(userList);
-        userList = userList.stream().sorted(Comparator.comparing(User::getId).reversed()).collect(Collectors.toList());
-        System.out.println(userList);
+
+        ArrayList collect1 = userList.stream().mapToLong(t -> t.getId()).distinct().collect(
+                () -> new ArrayList(), (theList, item) -> theList.add(item), (theList1, theList2) -> {
+                    theList1.addAll(theList2);
+                }
+        );
+        System.out.println(collect1);
+
+
+//
+//        System.out.println(userList);
+//        userList = userList.stream().sorted(Comparator.comparing(User::getId).reversed()).collect(Collectors.toList());
+//        System.out.println(userList);
     }
+
+
+
+
 }
