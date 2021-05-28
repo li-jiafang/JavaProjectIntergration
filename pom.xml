@@ -35,6 +35,7 @@
         <module>14_Java_Hash</module>
         <module>51_Spring_IOC01</module>
         <module>30_Think_In_Java</module>
+        <module>100_Spring_Integration</module>
     </modules>
 
     <name>JavaProjectIntergration</name>
