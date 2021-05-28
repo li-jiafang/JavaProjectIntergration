@@ -13,4 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserInfoService extends IService<UserInfoDO> {
 
+    /**
+     * 获取用户信息
+     * @return
+     */
+    UserInfoDO getUserInfo();
 }
