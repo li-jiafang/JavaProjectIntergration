@@ -1,7 +1,5 @@
 package com.ljf.demo1;
 
-import javafx.beans.Observable;
-
 import java.lang.reflect.Method;
 
 /**
